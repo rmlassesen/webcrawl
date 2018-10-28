@@ -5,5 +5,7 @@ parser.add_argument('url', metavar='URL', type=str  ,
                     help='the URL/webpage from where to initiate the WebCrawler')
 parser.add_argument('-d','--depth', metavar='N', dest='depth', nargs='?', type=int,
                     help='depth of the WebCrawl - default is 2', default=2)
+parser.add_argument('--server', dest='serve', action='store_true', help='serve the WebCrawl using Flask')
+parser.set_defaults(serve=False)
 parser.add_argument('-f','--figuresize', metavar='N,N', dest='figuresize', nargs='?', type=str,
                     help='size of the NetworkX graph - default is 12,12', default='12,12')

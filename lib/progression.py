@@ -1,8 +1,6 @@
 import threading
 import time
 
-import lib.html as html
-
 my_obj = None
 method = None
 
@@ -52,6 +50,7 @@ def monitor(object, call, operator):
     display.join()
 
     return my_obj
+
 
 def progression_print(p):
     print(p)
