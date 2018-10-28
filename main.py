@@ -1,14 +1,17 @@
 from lib import *
 from pprint import pprint
 from server import Server
-import threading
+import threading, webbrowser
 
 global server
 server = Server()
 
 def set_progress(setas):
     global server
-    server.progress = setas
+    if setas is "Done":
+        server.progress = setas
+    else:
+        server.progress = html.parse_string(setas)
 
     return True
 

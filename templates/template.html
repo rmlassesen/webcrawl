@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>HTML</title>
-</head>
-<body>
+    <style>
+        {{ html.css }}
+    </style>
+    <script>
+        let require;
 
- Hello my friends
+        function req() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (xhttp.responseText == "Done") {
+                        clearInterval(require);
+                        setTimeout(print_res(), 3000);
+                    } else {
+                        document.getElementById("resp").innerHTML = xhttp.responseText;
+                    }
+                }
+            };
+            xhttp.open("GET", "/status", true);
+            xhttp.send();
+        }
+
+        function print_res() {
+                        let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "/result", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body onload="require = setInterval(req,1000);">
+
+    <div class="wrapper">
+        <div id="resp"></div>
+        <div id="result"></div>
+    </div>
 
 </body>
 </html>

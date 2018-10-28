@@ -30,16 +30,16 @@ class Plot_Handler:
     def __init__(self):
         self.images = []
         self.imagetags = {}
-        self.div = '<div class="imgdiv>"'
+        self.div = '<div class="imgdiv">'
 
 
     def new_plot(self, plot):
         new_plot = 'Plot' + str(len(self.images) + 1)
-        plot_path = 'statics/' + new_plot + '.png'
+        plot_path = 'static/' + new_plot + '.png'
         self.images.append(new_plot)
         plot.savefig(plot_path)
 
-        self.imagetags[new_plot] = self.div + img_tag(plot_path,new_plot) + '</div>'
+        self.imagetags[new_plot] = self.div + img_tag(new_plot,plot_path) + '</div>'
         return self.imagetags[new_plot]
 
 

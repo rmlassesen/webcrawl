@@ -39,6 +39,7 @@ def monitor(object, call, operator):
                         break
                     o.handle(current_progress, operator)
                 time.sleep(0.5)
+            o.handle("Done", operator)
 
     compute = Compute_Thread("compute_thread")
     display = Display_Thread("display_thread")
