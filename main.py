@@ -30,7 +30,7 @@ if __name__ == '__main__':
     if not args.serve:
         progression.monitor(crawler, crawler.crawl, 'pretty')
         crawler.graph(figuresize).show()
-        pprint(crawler.spun)
+        pprint(crawler.url_list)
 
     else:
 
@@ -44,6 +44,9 @@ if __name__ == '__main__':
                 progression.monitor(crawler, crawler.crawl, 'progress')
                 graph_div = plots.new_plot(crawler.graph(figuresize))
                 server.html_add = graph_div
+                ordered_urls = html.ordered_list(crawler.url_list)
+                server.html_add += ordered_urls
+                server.status = 'Completed'
 
         class Thread_2(threading.Thread):
             def __init__(self, name):
@@ -59,6 +62,8 @@ if __name__ == '__main__':
 
         thread1.start()
         thread2.start()
+
+        webbrowser.open('http://127.0.0.1:5000')
 
         thread1.join()
         thread2.join()

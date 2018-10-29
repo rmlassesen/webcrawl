@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HTML</title>
+    <title>WebScraping - ResultView</title>
     <style>
         {{ html.css }}
     </style>
@@ -30,6 +30,9 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("result").innerHTML = xhttp.responseText;
+                }
+                if (this.getResponseHeader('R-Processing') != 'Completed') {
+                   setTimeout(print_res(), 3000);
                 }
             };
             xhttp.open("GET", "/result", true);

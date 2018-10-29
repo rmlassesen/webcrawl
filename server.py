@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response
 from lib import html
 
 class Server:
@@ -7,6 +7,7 @@ class Server:
         self.html_add = ""
         self.app = Flask(__name__)
         self.html = html
+        self.status = 'In-progress'
 
         @self.app.route("/")
         def index():
@@ -14,7 +15,9 @@ class Server:
 
         @self.app.route("/result")
         def result():
-            return self.html_add
+            resp = make_response(self.html_add, 200)
+            resp.headers.extend({'R-Processing':self.status})
+            return resp
 
         @self.app.route("/status")
         def status():

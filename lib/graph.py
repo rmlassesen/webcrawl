@@ -33,6 +33,8 @@ def make_graph(dict_nest, figuresize):
                 q.append((new_value, new_dictionary))
 
     plt.figure(1, figsize=(figuresize))
-    nx.draw_circular(G, with_labels=True)
+    nx.draw(G, with_labels=True, font_size = 10, font_weight = 'light')
+
+    url_indexes = list(sorted(url_indexes, key=url_indexes.__getitem__))
 
     return plt, url_indexes, url_index_count

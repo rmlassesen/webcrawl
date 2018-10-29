@@ -1,4 +1,18 @@
 css = '''
+        ol {
+            overflow:hidden;
+            overflow-y:scroll;
+            overflow-x:scroll;
+            max-width: 35%;
+            height: 700px;
+            float:right;
+            color: #FFFFFF;
+            font-weight: light;
+            background-color: #0000AA;
+            margin: 1px;
+            padding-top: 15px;
+        }
+
         .pyRes {
             color: #FFFFFF;
             font-weight: bold;
@@ -12,7 +26,10 @@ css = '''
             margin: auto;
         }
         .imgdiv {
-            text-align: center;
+            float:left
+        }
+        .imgdiv img {
+            width: 765px;
         }
 '''
 
@@ -24,6 +41,14 @@ def parse_string(string):
 def img_tag(img_name, img_path):
     tag = '<img src="' + img_path + '" alt="' + img_name + '" />'
     return tag
+
+def ordered_list(o_list):
+    list_tag = '<ol>\n'
+    for elm in o_list:
+        list_tag += '\t<li>' + elm + '</li>\n'
+
+    list_tag += '</ol>'
+    return list_tag
 
 
 class Plot_Handler:
